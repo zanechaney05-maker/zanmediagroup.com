@@ -239,9 +239,10 @@
       const [hashedEmail, hashedPhone, hashedFn, hashedLn] = await Promise.all([
         sha256(email), sha256(phone), sha256(fn), sha256(ln)
       ]);
-      fbq('track', 'Lead', {value: 500, currency: 'USD'}, {
+      fbq('init', '1217284990404446', {
         em: hashedEmail, ph: hashedPhone, fn: hashedFn, ln: hashedLn
       });
+      fbq('track', 'Lead', {value: 500, currency: 'USD'});
       const data = new FormData(form);
       await fetch(form.action, {
         method: 'POST', body: data,
