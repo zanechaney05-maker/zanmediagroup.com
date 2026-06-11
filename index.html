@@ -187,6 +187,57 @@
     .zmg-form button:hover { background: #e8e8e8; }
     .zmg-thanks { display: none; color: #aaa; font-size: 13px; margin-top: 4px; }
 
+    /* POPUP MODAL */
+    .modal-overlay {
+      position: fixed; inset: 0;
+      background: rgba(0,0,0,0.7);
+      backdrop-filter: blur(3px);
+      -webkit-backdrop-filter: blur(3px);
+      z-index: 100;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem;
+      opacity: 0;
+      transition: opacity 0.25s ease;
+    }
+    .modal-overlay.open { display: flex; }
+    .modal-overlay.visible { opacity: 1; }
+    .modal-card {
+      background: #0f0f0f;
+      border: 0.5px solid #2a2a2a;
+      border-radius: 10px;
+      padding: 2.25rem;
+      max-width: 460px;
+      width: 100%;
+      position: relative;
+      transform: translateY(12px);
+      transition: transform 0.25s ease;
+      max-height: 90vh;
+      overflow-y: auto;
+    }
+    .modal-overlay.visible .modal-card { transform: translateY(0); }
+    .modal-close {
+      position: absolute;
+      top: 14px; right: 14px;
+      background: none;
+      border: none;
+      color: #666;
+      font-size: 22px;
+      line-height: 1;
+      cursor: pointer;
+      padding: 6px;
+      font-family: inherit;
+    }
+    .modal-close:hover { color: #fff; }
+    .modal-label { font-size: 11px; letter-spacing: 0.18em; color: #555; text-transform: uppercase; margin-bottom: 1rem; }
+    .modal-h2 { font-size: 22px; font-weight: 500; color: #fff; margin-bottom: 0.6rem; }
+    .modal-p { font-size: 14px; color: #777; line-height: 1.6; }
+
+    @media (prefers-reduced-motion: reduce) {
+      .modal-overlay, .modal-card { transition: none; }
+    }
+
     /* FOOTER */
     .footer {
       padding: 2rem 2.5rem;
@@ -204,6 +255,7 @@
       .nav-logo img { height: 48px; }
       .gray-band, .white-section, .contact-band { padding: 3rem 1.5rem; }
       .footer { padding: 1.5rem; flex-direction: column; gap: 8px; text-align: center; }
+      .modal-card { padding: 1.75rem 1.5rem; }
     }
   </style>
 
@@ -226,31 +278,73 @@
   }
 
   document.addEventListener('DOMContentLoaded', function() {
-    const form = document.getElementById('zmg-contact');
-    if (!form) return;
-    form.addEventListener('submit', async function(e) {
-      e.preventDefault();
-      const email = form.querySelector('[name="email"]').value.trim().toLowerCase();
-      const phone = form.querySelector('[name="phone"]').value.replace(/\D/g,'');
-      const name  = form.querySelector('[name="name"]').value.trim().toLowerCase();
-      const parts = name.split(' ');
-      const fn = parts[0] || '';
-      const ln = parts[parts.length - 1] || '';
-      const [hashedEmail, hashedPhone, hashedFn, hashedLn] = await Promise.all([
-        sha256(email), sha256(phone), sha256(fn), sha256(ln)
-      ]);
-      fbq('init', '1217284990404446', {
-        em: hashedEmail, ph: hashedPhone, fn: hashedFn, ln: hashedLn
+
+    /* ---- Shared form handler (popup form + bottom form) ---- */
+    document.querySelectorAll('.zmg-lead-form').forEach(function(form) {
+      form.addEventListener('submit', async function(e) {
+        e.preventDefault();
+        const email = form.querySelector('[name="email"]').value.trim().toLowerCase();
+        const phone = form.querySelector('[name="phone"]').value.replace(/\D/g,'');
+        const name  = form.querySelector('[name="name"]').value.trim().toLowerCase();
+        const parts = name.split(' ');
+        const fn = parts[0] || '';
+        const ln = parts[parts.length - 1] || '';
+        const [hashedEmail, hashedPhone, hashedFn, hashedLn] = await Promise.all([
+          sha256(email), sha256(phone), sha256(fn), sha256(ln)
+        ]);
+        fbq('init', '1217284990404446', {
+          em: hashedEmail, ph: hashedPhone, fn: hashedFn, ln: hashedLn
+        });
+        fbq('track', 'Lead', {value: 500, currency: 'USD'});
+        const data = new FormData(form);
+        await fetch(form.action, {
+          method: 'POST', body: data,
+          headers: { 'Accept': 'application/json' }
+        });
+        form.reset();
+        const thanks = form.querySelector('.zmg-thanks');
+        if (thanks) thanks.style.display = 'block';
       });
-      fbq('track', 'Lead', {value: 500, currency: 'USD'});
-      const data = new FormData(form);
-      await fetch(form.action, {
-        method: 'POST', body: data,
-        headers: { 'Accept': 'application/json' }
-      });
-      form.reset();
-      document.getElementById('zmg-thanks').style.display = 'block';
     });
+
+    /* ---- Popup modal ---- */
+    const overlay = document.getElementById('zmg-modal');
+    if (!overlay) return;
+
+    const POPUP_DELAY_MS = 1500;            // how long after page load the popup appears
+    const SHOW_ONCE_PER_SESSION = true;     // set to false to show on every page load
+
+    function openModal() {
+      overlay.classList.add('open');
+      requestAnimationFrame(function() { overlay.classList.add('visible'); });
+      document.body.style.overflow = 'hidden';
+    }
+    function closeModal() {
+      overlay.classList.remove('visible');
+      setTimeout(function() { overlay.classList.remove('open'); }, 250);
+      document.body.style.overflow = '';
+    }
+
+    overlay.querySelector('.modal-close').addEventListener('click', closeModal);
+    overlay.addEventListener('click', function(e) {
+      if (e.target === overlay) closeModal();
+    });
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape' && overlay.classList.contains('open')) closeModal();
+    });
+
+    let alreadyShown = false;
+    if (SHOW_ONCE_PER_SESSION) {
+      try { alreadyShown = sessionStorage.getItem('zmgPopupShown') === '1'; } catch (err) {}
+    }
+    if (!alreadyShown) {
+      setTimeout(function() {
+        openModal();
+        if (SHOW_ONCE_PER_SESSION) {
+          try { sessionStorage.setItem('zmgPopupShown', '1'); } catch (err) {}
+        }
+      }, POPUP_DELAY_MS);
+    }
   });
   </script>
   <noscript><img height="1" width="1" style="display:none"
@@ -264,6 +358,24 @@
   <div class="bg-grid"></div>
   <div class="bg-glow"></div>
   <div class="bg-glow2"></div>
+
+  <!-- POPUP CONTACT MODAL -->
+  <div class="modal-overlay" id="zmg-modal" role="dialog" aria-modal="true" aria-label="Contact Zan Media Group">
+    <div class="modal-card">
+      <button type="button" class="modal-close" aria-label="Close">&times;</button>
+      <p class="modal-label">Zan Media Group</p>
+      <h2 class="modal-h2">Want more booked jobs?</h2>
+      <p class="modal-p">Tell us about your business and we'll reach out to talk through what running ads could look like. No pressure, no jargon.</p>
+      <form class="zmg-form zmg-lead-form" action="https://formspree.io/f/mjgdryay" method="POST">
+        <input type="text"  name="name"     placeholder="Your name"      required />
+        <input type="text"  name="business" placeholder="Business name"  required />
+        <input type="tel"   name="phone"    placeholder="Phone number"   required />
+        <input type="email" name="email"    placeholder="Email address"  required />
+        <button type="submit">Send message</button>
+        <p class="zmg-thanks">Thanks — we'll be in touch shortly.</p>
+      </form>
+    </div>
+  </div>
 
   <div class="content">
 
@@ -334,13 +446,13 @@
       <div class="contact-inner">
         <h2 class="contact-h2">Ready to get more jobs?</h2>
         <p class="contact-p">Reach out and we'll talk through what running ads could look like for your business. No pressure, no jargon.</p>
-        <form id="zmg-contact" class="zmg-form" action="https://formspree.io/f/mjgdryay" method="POST">
+        <form id="zmg-contact" class="zmg-form zmg-lead-form" action="https://formspree.io/f/mjgdryay" method="POST">
           <input type="text"  name="name"     placeholder="Your name"      required />
           <input type="text"  name="business" placeholder="Business name"  required />
           <input type="tel"   name="phone"    placeholder="Phone number"   required />
           <input type="email" name="email"    placeholder="Email address"  required />
           <button type="submit">Send message</button>
-          <p id="zmg-thanks" class="zmg-thanks">Thanks — we'll be in touch shortly.</p>
+          <p class="zmg-thanks">Thanks — we'll be in touch shortly.</p>
         </form>
       </div>
     </section>
