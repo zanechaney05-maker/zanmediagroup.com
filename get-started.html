@@ -40,11 +40,12 @@
   <style>
     /* Page-specific styling for the get-started page */
     .gs-main {
-      min-height: 70vh;
+      min-height: calc(100vh - 160px);
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: max(2.5rem, calc((100% - 1140px) / 2));
+      padding: 2rem 1.5rem;
+      box-sizing: border-box;
     }
     .gs-card {
       max-width: 640px;
