@@ -12,19 +12,21 @@ body { background: #0a0a0a; color: #fff; font-family: -apple-system, BlinkMacSys
 .bg-grid {
   position: fixed; top: 0; left: 0; width: 100%; height: 100%;
   pointer-events: none; z-index: 0;
-  background-image:
-    linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
-  background-size: 48px 48px;
+  background-image: radial-gradient(rgba(255,255,255,0.14) 1px, transparent 1.5px);
+  background-size: 34px 34px;
+  -webkit-mask-image: radial-gradient(ellipse 75% 60% at 30% 0%, #000 0%, transparent 72%);
+          mask-image: radial-gradient(ellipse 75% 60% at 30% 0%, #000 0%, transparent 72%);
 }
 .bg-glow {
-  position: fixed; top: -200px; left: -200px; width: 600px; height: 600px;
-  background: radial-gradient(circle, var(--accent-glow) 0%, transparent 70%);
+  position: fixed; top: -260px; left: -220px; width: 760px; height: 760px;
+  background: radial-gradient(circle, var(--accent-glow) 0%, transparent 68%);
+  filter: blur(10px);
   pointer-events: none; z-index: 0;
 }
 .bg-glow2 {
-  position: fixed; bottom: -150px; right: -150px; width: 500px; height: 500px;
-  background: radial-gradient(circle, rgba(139,92,246,0.10) 0%, transparent 70%);
+  position: fixed; bottom: -220px; right: -200px; width: 620px; height: 620px;
+  background: radial-gradient(circle, rgba(139,92,246,0.07) 0%, transparent 70%);
+  filter: blur(10px);
   pointer-events: none; z-index: 0;
 }
 
@@ -59,6 +61,7 @@ body { background: #0a0a0a; color: #fff; font-family: -apple-system, BlinkMacSys
   transition: background 0.2s;
 }
 .nav-cta:hover { background: var(--accent); }
+.nav-cta.active { background: var(--accent); box-shadow: 0 0 0 1px rgba(255,255,255,0.25) inset; }
 
 /* HERO (homepage) */
 .hero { padding: 6rem max(2.5rem, calc((100% - 1140px) / 2)) 5rem; }
