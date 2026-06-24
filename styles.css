@@ -43,7 +43,7 @@ body { background: #0b0b0d; color: #fff; font-family: -apple-system, BlinkMacSys
 /* NAV */
 .nav {
   display: flex; justify-content: space-between; align-items: center;
-  padding: 1.25rem max(2.5rem, calc((100% - 1140px) / 2));
+  padding: 1.25rem max(2.5rem, calc((100% - 1240px) / 2));
   border-bottom: 0.5px solid #242428;
   background: rgba(11,11,13,0.85);
   backdrop-filter: blur(6px);
@@ -74,11 +74,11 @@ body { background: #0b0b0d; color: #fff; font-family: -apple-system, BlinkMacSys
 .nav-cta.active { background: var(--accent); box-shadow: 0 0 0 1px rgba(255,255,255,0.25) inset; }
 
 /* HERO (homepage) */
-.hero { padding: 6rem max(2.5rem, calc((100% - 1140px) / 2)) 5rem; }
+.hero { padding: 5.5rem max(2.5rem, calc((100% - 1240px) / 2)) 4rem; }
 .hero-label { font-size: 11px; letter-spacing: 0.18em; color: #888; text-transform: uppercase; margin-bottom: 1.5rem; }
-.hero-h1 { font-size: 38px; font-weight: 500; line-height: 1.2; color: #fff; margin-bottom: 1.5rem; max-width: 600px; }
+.hero-h1 { font-size: clamp(32px, 4vw, 44px); font-weight: 500; line-height: 1.2; color: #fff; margin-bottom: 1.5rem; max-width: 680px; }
 .hero-h1 span { color: var(--accent); }
-.hero-sub { font-size: 16px; color: #999; line-height: 1.7; margin-bottom: 2.5rem; max-width: 500px; }
+.hero-sub { font-size: clamp(15px, 1.1vw, 17px); color: #999; line-height: 1.7; margin-bottom: 2.5rem; max-width: 540px; }
 .hero-btn {
   display: inline-block; background: var(--accent-2); color: #fff;
   padding: 12px 28px; font-size: 14px; font-weight: 500;
@@ -88,15 +88,15 @@ body { background: #0b0b0d; color: #fff; font-family: -apple-system, BlinkMacSys
 .hero-btn:hover { background: var(--accent); }
 
 /* PAGE HERO (subpages) */
-.page-hero { padding: 4.5rem max(2.5rem, calc((100% - 1140px) / 2)) 3rem; }
-.page-hero .hero-h1 { font-size: 32px; }
+.page-hero { padding: 3.5rem max(2.5rem, calc((100% - 1240px) / 2)) 2.25rem; }
+.page-hero .hero-h1 { font-size: clamp(28px, 3.4vw, 36px); }
 
 /* SECTIONS */
 .gray-band {
   background: rgba(255,255,255,0.035);
   border-top: 0.5px solid #232323;
   border-bottom: 0.5px solid #232323;
-  padding: 4rem max(2.5rem, calc((100% - 1140px) / 2));
+  padding: 4rem max(2.5rem, calc((100% - 1240px) / 2));
 }
 .section-label { font-size: 11px; letter-spacing: 0.18em; color: #888; text-transform: uppercase; margin-bottom: 2.5rem; }
 
@@ -110,7 +110,7 @@ body { background: #0b0b0d; color: #fff; font-family: -apple-system, BlinkMacSys
 .service-title { font-size: 14px; font-weight: 500; color: #efefef; margin-bottom: 0.5rem; }
 .service-desc { font-size: 13px; color: #8c8c8c; line-height: 1.6; }
 
-.white-section { background: #fff; padding: 4rem max(2.5rem, calc((100% - 1140px) / 2)); }
+.white-section { background: #fff; padding: 4rem max(2.5rem, calc((100% - 1240px) / 2)); }
 .white-section .section-label { color: #aaa; }
 .process-steps {
   display: grid;
@@ -123,12 +123,21 @@ body { background: #0b0b0d; color: #fff; font-family: -apple-system, BlinkMacSys
 .step-desc { font-size: 13px; color: #888; line-height: 1.6; }
 
 /* DETAIL SECTIONS (services page) */
-.detail-section { padding: 3.5rem max(2.5rem, calc((100% - 1140px) / 2)); border-bottom: 0.5px solid #232323; }
-.detail-inner { max-width: 720px; }
+.detail-section { padding: 2.75rem max(2.5rem, calc((100% - 1240px) / 2)); border-bottom: 0.5px solid #232323; }
+.detail-inner {
+  max-width: 980px;
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  gap: 2.5rem;
+}
+.detail-label { grid-column: 1; }
+.detail-body { grid-column: 2; }
 .detail-num { font-size: 11px; color: var(--accent); opacity: 0.85; letter-spacing: 0.1em; margin-bottom: 0.75rem; }
-.detail-h2 { font-size: 22px; font-weight: 500; color: #fff; margin-bottom: 1rem; }
-.detail-p { font-size: 15px; color: #999; line-height: 1.75; margin-bottom: 1rem; max-width: 640px; }
+.detail-h2 { font-size: clamp(20px, 1.8vw, 24px); font-weight: 500; color: #fff; }
+.detail-p { font-size: clamp(15px, 1.05vw, 16.5px); color: #999; line-height: 1.75; margin-bottom: 1rem; max-width: 640px; }
 .detail-p strong { color: #e0e0e0; font-weight: 500; }
+.detail-p a { color: var(--accent); }
+.detail-body .detail-p:last-child { margin-bottom: 0; }
 
 /* STAT CARDS (results page) */
 .stats-grid {
@@ -144,20 +153,13 @@ body { background: #0b0b0d; color: #fff; font-family: -apple-system, BlinkMacSys
 .stat-label { font-size: 13px; color: #999; line-height: 1.5; }
 .stat-note { font-size: 12px; color: #777; margin-top: 1.5rem; line-height: 1.6; }
 
-/* PROSE (about + legal pages) */
-.prose { max-width: 680px; }
-.prose h2 { font-size: 20px; font-weight: 500; color: #fff; margin: 2.25rem 0 0.75rem; }
-.prose h2:first-child { margin-top: 0; }
-.prose p { font-size: 15px; color: #999; line-height: 1.75; margin-bottom: 1rem; }
-.prose strong { color: #e0e0e0; font-weight: 500; }
-.prose a { color: var(--accent); }
-.legal-meta { font-size: 12px; color: #777; margin-bottom: 2rem; }
+.legal-meta { font-size: 12px; color: #777; margin-bottom: 0; }
 
 /* CONTACT */
 .contact-band {
   background: rgba(255,255,255,0.02);
   border-top: 0.5px solid #232323;
-  padding: 4rem max(2.5rem, calc((100% - 1140px) / 2));
+  padding: 4rem max(2.5rem, calc((100% - 1240px) / 2));
 }
 .contact-inner {
   background: #131313; border: 0.5px solid #262626;
@@ -237,7 +239,7 @@ body { background: #0b0b0d; color: #fff; font-family: -apple-system, BlinkMacSys
 
 /* FOOTER */
 .footer {
-  padding: 2rem max(2.5rem, calc((100% - 1140px) / 2));
+  padding: 2rem max(2.5rem, calc((100% - 1240px) / 2));
   border-top: 0.5px solid #232323;
   display: flex; justify-content: space-between; align-items: center;
   gap: 12px; flex-wrap: wrap;
@@ -247,6 +249,12 @@ body { background: #0b0b0d; color: #fff; font-family: -apple-system, BlinkMacSys
 .footer-links a { font-size: 12px; color: #707070; text-decoration: none; }
 .footer-links a:hover { color: var(--accent); }
 .footer-loc { font-size: 12px; color: #707070; }
+
+/* TABLET — stack the two-column detail rows */
+@media (max-width: 800px) {
+  .detail-inner { grid-template-columns: 1fr; gap: 0.75rem; }
+  .detail-label:empty { display: none; }
+}
 
 /* MOBILE */
 @media (max-width: 600px) {
