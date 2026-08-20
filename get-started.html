@@ -19,7 +19,9 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css" />
   <link rel="stylesheet" href="styles.css" />
 
-  <!-- Meta Pixel (PageView only, this page has no lead form) -->
+  <!-- Meta Pixel (this page's conversion path is the GoHighLevel chat
+       widget below, not a plain HTML form, so Lead is tracked via the
+       widget's registerBeforeSubmit hook instead of a form submit event) -->
   <script>
   !function(f,b,e,v,n,t,s)
   {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
@@ -29,13 +31,57 @@
   t.src=v;s=b.getElementsByTagName(e)[0];
   s.parentNode.insertBefore(t,s)}(window, document,'script',
   'https://connect.facebook.net/en_US/fbevents.js');
+  fbq('set', 'autoConfig', false, '1217284990404446');
   fbq('init', '1217284990404446');
   fbq('track', 'PageView');
+
+  async function sha256(str) {
+    const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(str));
+    return Array.from(new Uint8Array(buf)).map(b => b.toString(16).padStart(2,'0')).join('');
+  }
+
+  /* GoHighLevel's chat widget fires a "LC_chatWidgetLoaded" window event once
+     it's ready, and exposes registerBeforeSubmit(callback) so a callback can
+     run right when a visitor submits their name/phone to start a chat. That
+     is this page's only conversion action, so that's where we fire Lead. */
+  window.addEventListener('LC_chatWidgetLoaded', function() {
+    if (!window.leadConnector || !window.leadConnector.chatWidget ||
+        typeof window.leadConnector.chatWidget.registerBeforeSubmit !== 'function') {
+      return;
+    }
+    window.leadConnector.chatWidget.registerBeforeSubmit(function(values) {
+      values = values || {};
+      Promise.resolve().then(async function() {
+        try {
+          const email = String(values.email || '').trim().toLowerCase();
+          const phone = String(values.phone || '').replace(/\D/g,'');
+          const name  = String(values.name || values.first_name || '').trim().toLowerCase();
+          const parts = name.split(' ');
+          const fn = parts[0] || '';
+          const ln = parts[parts.length - 1] || '';
+          const [hashedEmail, hashedPhone, hashedFn, hashedLn] = await Promise.all([
+            sha256(email), sha256(phone), sha256(fn), sha256(ln)
+          ]);
+          fbq('init', '1217284990404446', {
+            em: hashedEmail, ph: hashedPhone, fn: hashedFn, ln: hashedLn
+          });
+        } catch (err) { /* still report the Lead even if hashing fails */ }
+        fbq('track', 'Lead', {value: 500, currency: 'USD'}, {
+          eventID: 'lead_' + Date.now() + '_' + Math.random().toString(36).slice(2)
+        });
+      });
+      return true; // allow the widget's own submit to proceed
+    });
+  }, false);
   </script>
   <noscript><img height="1" width="1" style="display:none"
   src="https://www.facebook.com/tr?id=1217284990404446&ev=PageView&noscript=1"
   /></noscript>
   <!-- End Meta Pixel -->
+  <!-- NOTE: verify that values.email / values.phone / values.name above match
+       the actual field keys your GoHighLevel pre-chat form uses -- these are
+       the standard field names but sub-account chat form configs can vary.
+       Confirm with a real test chat in Meta Events Manager's Test Events tab. -->
 
   <style>
     /* Page-specific styling for the get-started page */
