@@ -56,6 +56,11 @@
   t.src=v;s=b.getElementsByTagName(e)[0];
   s.parentNode.insertBefore(t,s)}(window, document,'script',
   'https://connect.facebook.net/en_US/fbevents.js');
+  /* Disable Meta's automatic/plugin-based event detection so ONLY the
+     fbq('track', ...) calls we write below ever fire. Without this, Meta's
+     pixel can auto-detect the lead form on this page and fire its own
+     "Lead" event on page load, before anyone actually submits anything. */
+  fbq('set', 'autoConfig', false, '1217284990404446');
   fbq('init', '1217284990404446');
   fbq('track', 'PageView');
 
@@ -76,18 +81,41 @@
         const parts = name.split(' ');
         const fn = parts[0] || '';
         const ln = parts[parts.length - 1] || '';
+
+        const submitBtn = form.querySelector('button[type="submit"]');
+        if (submitBtn) submitBtn.disabled = true;
+
+        const data = new FormData(form);
+        let submitted = false;
+        try {
+          const res = await fetch(form.action, {
+            method: 'POST', body: data,
+            headers: { 'Accept': 'application/json' }
+          });
+          submitted = res.ok;
+        } catch (err) {
+          submitted = false;
+        }
+
+        if (submitBtn) submitBtn.disabled = false;
+
+        if (!submitted) {
+          alert("Something went wrong sending your message. Please try again, or reach us directly at zane@zanmediagroup.com.");
+          return;
+        }
+
+        /* Only report a Lead to Meta once Formspree has confirmed the
+           message actually went through. */
         const [hashedEmail, hashedPhone, hashedFn, hashedLn] = await Promise.all([
           sha256(email), sha256(phone), sha256(fn), sha256(ln)
         ]);
         fbq('init', '1217284990404446', {
           em: hashedEmail, ph: hashedPhone, fn: hashedFn, ln: hashedLn
         });
-        fbq('track', 'Lead', {value: 500, currency: 'USD'});
-        const data = new FormData(form);
-        await fetch(form.action, {
-          method: 'POST', body: data,
-          headers: { 'Accept': 'application/json' }
+        fbq('track', 'Lead', {value: 500, currency: 'USD'}, {
+          eventID: 'lead_' + Date.now() + '_' + Math.random().toString(36).slice(2)
         });
+
         form.reset();
         const thanks = form.querySelector('.zmg-thanks');
         if (thanks) thanks.style.display = 'block';
