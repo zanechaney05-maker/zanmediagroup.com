@@ -187,63 +187,7 @@
   fbq('init', '1217284990404446');
   fbq('track', 'PageView');
 
-  async function sha256(str) {
-    const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(str));
-    return Array.from(new Uint8Array(buf)).map(b => b.toString(16).padStart(2,'0')).join('');
-  }
-
   document.addEventListener('DOMContentLoaded', function() {
-
-    /* ---- Shared form handler (popup form + bottom form) ---- */
-    document.querySelectorAll('.zmg-lead-form').forEach(function(form) {
-      form.addEventListener('submit', async function(e) {
-        e.preventDefault();
-        const email = form.querySelector('[name="email"]').value.trim().toLowerCase();
-        const phone = form.querySelector('[name="phone"]').value.replace(/\D/g,'');
-        const name  = form.querySelector('[name="name"]').value.trim().toLowerCase();
-        const parts = name.split(' ');
-        const fn = parts[0] || '';
-        const ln = parts[parts.length - 1] || '';
-
-        const submitBtn = form.querySelector('button[type="submit"]');
-        if (submitBtn) submitBtn.disabled = true;
-
-        const data = new FormData(form);
-        let submitted = false;
-        try {
-          const res = await fetch(form.action, {
-            method: 'POST', body: data,
-            headers: { 'Accept': 'application/json' }
-          });
-          submitted = res.ok;
-        } catch (err) {
-          submitted = false;
-        }
-
-        if (submitBtn) submitBtn.disabled = false;
-
-        if (!submitted) {
-          alert("Something went wrong sending your message. Please try again, or reach us directly at zane@zanmediagroup.com.");
-          return;
-        }
-
-        /* Only report a Lead to Meta once Formspree has confirmed the
-           message actually went through. */
-        const [hashedEmail, hashedPhone, hashedFn, hashedLn] = await Promise.all([
-          sha256(email), sha256(phone), sha256(fn), sha256(ln)
-        ]);
-        fbq('init', '1217284990404446', {
-          em: hashedEmail, ph: hashedPhone, fn: hashedFn, ln: hashedLn
-        });
-        fbq('track', 'Lead', {value: 500, currency: 'USD'}, {
-          eventID: 'lead_' + Date.now() + '_' + Math.random().toString(36).slice(2)
-        });
-
-        form.reset();
-        const thanks = form.querySelector('.zmg-thanks');
-        if (thanks) thanks.style.display = 'block';
-      });
-    });
 
     /* ---- Popup modal ---- */
     const overlay = document.getElementById('zmg-modal');
@@ -264,6 +208,8 @@
     }
 
     overlay.querySelector('.modal-close').addEventListener('click', closeModal);
+    var modalCta = overlay.querySelector('.modal-cta');
+    if (modalCta) modalCta.addEventListener('click', function() { closeModal(); });
     overlay.addEventListener('click', function(e) {
       if (e.target === overlay) closeModal();
     });
@@ -299,27 +245,8 @@
       <button type="button" class="modal-close" aria-label="Close">&times;</button>
       <p class="modal-label">Zan Media Group</p>
       <h2 class="modal-h2">Want more booked jobs?</h2>
-      <p class="modal-p">Tell us about your business and we'll reach out to talk through what running ads could look like. No pressure, no jargon.</p>
-      <form class="zmg-form zmg-lead-form" action="https://formspree.io/f/mjgdryay" method="POST">
-        <input type="text"  name="name"     placeholder="Your name"      required />
-        <input type="text"  name="business" placeholder="Business name"  required />
-        <select name="business_type" required>
-          <option value="" disabled selected>Type of business</option>
-          <option value="Roofing">Roofing</option>
-          <option value="HVAC">HVAC</option>
-          <option value="Plumbing">Plumbing</option>
-          <option value="Electrical">Electrical</option>
-          <option value="Landscaping">Landscaping</option>
-          <option value="Painting">Painting</option>
-          <option value="Remodeling / General Contractor">Remodeling / General Contractor</option>
-          <option value="Cleaning / Pressure Washing">Cleaning / Pressure Washing</option>
-          <option value="Other">Other</option>
-        </select>
-        <input type="tel"   name="phone"    placeholder="Phone number"   required />
-        <input type="email" name="email"    placeholder="Email address"  required />
-        <button type="submit">Send message</button>
-        <p class="zmg-thanks">Thanks, we'll be in touch shortly.</p>
-      </form>
+      <p class="modal-p">Tell us about your business and we'll text you within a minute to talk through what running ads could look like. No pressure, no jargon.</p>
+      <a class="hero-btn modal-cta" href="#contact">Get started</a>
     </div>
   </div>
 
@@ -460,27 +387,27 @@
       <p class="section-label">Contact</p>
       <div class="contact-inner">
         <h2 class="contact-h2">Ready to get more jobs?</h2>
-        <p class="contact-p">Reach out and we'll talk through what running ads could look like for your business. No pressure, no jargon.</p>
-        <form id="zmg-contact" class="zmg-form zmg-lead-form" action="https://formspree.io/f/mjgdryay" method="POST">
-          <input type="text"  name="name"     placeholder="Your name"      required />
-          <input type="text"  name="business" placeholder="Business name"  required />
-          <select name="business_type" required>
-            <option value="" disabled selected>Type of business</option>
-            <option value="Roofing">Roofing</option>
-            <option value="HVAC">HVAC</option>
-            <option value="Plumbing">Plumbing</option>
-            <option value="Electrical">Electrical</option>
-            <option value="Landscaping">Landscaping</option>
-            <option value="Painting">Painting</option>
-            <option value="Remodeling / General Contractor">Remodeling / General Contractor</option>
-            <option value="Cleaning / Pressure Washing">Cleaning / Pressure Washing</option>
-            <option value="Other">Other</option>
-          </select>
-          <input type="tel"   name="phone"    placeholder="Phone number"   required />
-          <input type="email" name="email"    placeholder="Email address"  required />
-          <button type="submit">Send message</button>
-          <p class="zmg-thanks">Thanks, we'll be in touch shortly.</p>
-        </form>
+        <p class="contact-p">Fill this out and we'll text you within a minute to talk through what running ads could look like for your business. No pressure, no jargon.</p>
+        <div class="ghl-form">
+          <iframe
+            src="https://api.leadconnectorhq.com/widget/form/NWkth8ShdtScF7DPefAU"
+            style="width:100%;height:770px;border:none;border-radius:8px"
+            id="inline-NWkth8ShdtScF7DPefAU"
+            data-layout="{'id':'INLINE'}"
+            data-trigger-type="alwaysShow"
+            data-trigger-value=""
+            data-activation-type="alwaysActivated"
+            data-activation-value=""
+            data-deactivation-type="neverDeactivate"
+            data-deactivation-value=""
+            data-form-name="ZMG Website Lead Form"
+            data-height="770"
+            data-layout-iframe-id="inline-NWkth8ShdtScF7DPefAU"
+            data-form-id="NWkth8ShdtScF7DPefAU"
+            data-cookie-consent="false"
+            title="ZMG Website Lead Form"></iframe>
+          <script src="https://link.msgsndr.com/js/form_embed.js"></script>
+        </div>
       </div>
     </section>
 
