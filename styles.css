@@ -257,8 +257,13 @@ body { background: #0b0b0d; color: #fff; font-family: -apple-system, BlinkMacSys
 .ghl-form { width: 100%; margin: 0.5rem 0 0; }
 .ghl-form iframe { display: block; min-height: 770px; }
 .contact-inner:has(.ghl-form) { max-width: 640px; }
-.modal-cta { display: inline-block; margin-top: 1.25rem; }
+.modal-card:has(.ghl-form--modal) { max-width: 520px; }
+.ghl-form--modal { margin-top: 1rem; }
+.ghl-form--modal iframe { min-height: 756px; }
 @media (max-width: 600px) {
+  .modal-overlay { padding: 0.75rem; }
+  .modal-card:has(.ghl-form--modal) { padding: 1.5rem 0.5rem 0.5rem; }
+  .modal-card:has(.ghl-form--modal) .modal-label, .modal-card:has(.ghl-form--modal) .modal-h2, .modal-card:has(.ghl-form--modal) .modal-p { padding: 0 0.75rem; }
   .contact-band:has(.ghl-form) { padding-left: 0.75rem; padding-right: 0.75rem; }
   .contact-inner:has(.ghl-form) { padding: 1.75rem 0.75rem 0.75rem; }
   .contact-inner:has(.ghl-form) .contact-h2, .contact-inner:has(.ghl-form) .contact-p { padding: 0 0.75rem; }
