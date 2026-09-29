@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Thanks | Zan Media Group</title>
+  <meta name="description" content="Thanks for reaching out to Zan Media Group." />
+  <meta name="robots" content="noindex" />
+  <link rel="icon" type="image/png" href="BlackLogoONLY.png" />
+  <link rel="canonical" href="https://zanmediagroup.com/thank-you.html" />
+
+
+  <link rel="stylesheet" href="styles.css" />
+
+  <!-- Meta Pixel Code -->
+  <script>
+  !function(f,b,e,v,n,t,s)
+  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+  n.queue=[];t=b.createElement(e);t.async=!0;
+  t.src=v;s=b.getElementsByTagName(e)[0];
+  s.parentNode.insertBefore(t,s)}(window, document,'script',
+  'https://connect.facebook.net/en_US/fbevents.js');
+  fbq('set', 'autoConfig', false, '1217284990404446');
+  fbq('init', '1217284990404446');
+  fbq('track', 'PageView');
+  /* This page is only reached after the lead form is submitted, so it counts the Lead.
+     The session check stops a refresh from counting the same lead twice. */
+  (function () {
+    var seen = false;
+    try { seen = sessionStorage.getItem('zmgLeadCounted') === '1'; } catch (e) {}
+    if (!seen) {
+      fbq('track', 'Lead', {value: 500, currency: 'USD'});
+      try { sessionStorage.setItem('zmgLeadCounted', '1'); } catch (e) {}
+    }
+  })();
+  </script>
+  <noscript><img height="1" width="1" style="display:none"
+  src="https://www.facebook.com/tr?id=1217284990404446&ev=PageView&noscript=1"
+  /></noscript>
+  <!-- End Meta Pixel Code -->
+</head>
+<body>
+
+  <div class="content">
+
+    <nav class="nav">
+      <a class="nav-logo" href="index.html">
+        <img src="BlackLogoONLY.png" alt="Zan Media Group" />
+        <span class="nav-logo-text">Zan Media Group</span>
+      </a>
+      <div class="nav-right">
+        <a class="nav-link" href="services.html">Services</a>
+        <a class="nav-link" href="about.html">About</a>
+        <a class="nav-cta" href="get-started.html">Get Started</a>
+      </div>
+    </nav>
+
+    <section class="page-hero">
+      <p class="hero-label">Message received</p>
+      <h1 class="hero-h1">Thanks, we got it.<br><span>Watch for a text.</span></h1>
+      <p class="hero-sub">You&#39;ll get a text from Zan Media Group in about a minute. Reply there and we&#39;ll set up a time to talk about your business.</p>
+      <p class="hero-sub">Didn&#39;t get a text? Email <a href="mailto:zane@zanmediagroup.com" style="color: var(--accent);">zane@zanmediagroup.com</a> and Zane will get right back to you.</p>
+      <a class="hero-btn" href="results.html">See our results while you wait</a>
+    </section>
+
+    <footer class="footer">
+      <span class="footer-copy">© 2026 Zan Media Group</span>
+      <div class="footer-links">
+        <a href="mailto:zane@zanmediagroup.com">zane@zanmediagroup.com</a>
+        <a href="tel:+16147017824">(614)&nbsp;701-7824</a>
+        <a href="facebook-ads-wilmington-nc.html">Wilmington contractors</a>
+        <a href="results.html">Results</a>
+        <a href="privacy.html">Privacy &amp; Terms</a>
+      </div>
+      <span class="footer-loc">Wilmington, NC 28409</span>
+    </footer>
+
+  </div>
+</body>
+</html>
