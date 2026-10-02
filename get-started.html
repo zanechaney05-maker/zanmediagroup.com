@@ -5,8 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Get More Local Leads | Zan Media Group</title>
   <meta name="description" content="Start a chat with Zan Media Group. Drop your name and number and we'll text you right back about getting more local leads." />
-  <link rel="icon" type="image/png" href="BlackLogoONLY.png" />
-  <link rel="apple-touch-icon" href="BlackLogoONLY.png" />
+  <link rel="icon" href="favicon.ico" sizes="48x48" />
+  <link rel="icon" type="image/png" sizes="192x192" href="icon-192.png" />
+  <link rel="apple-touch-icon" href="apple-touch-icon.png" />
+  <meta name="theme-color" content="#0b0b0d" />
   <link rel="canonical" href="https://zanmediagroup.com/get-started.html" />
 
   <meta property="og:type"        content="website" />
@@ -16,8 +18,9 @@
   <meta property="og:image"       content="https://zanmediagroup.com/BlackLogoONLY.png" />
   <meta property="og:site_name"   content="Zan Media Group" />
 
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css" />
   <link rel="stylesheet" href="styles.css" />
+  <script>document.documentElement.classList.add('js');</script>
+  <script src="site.js" defer></script>
 
   <!-- Meta Pixel (this page's conversion path is the GoHighLevel chat
        widget below, not a plain HTML form, so Lead is tracked via the
@@ -128,7 +131,18 @@
       border-radius: 999px;
       opacity: 0.9;
     }
-    .gs-prompt i { font-size: 1.2rem; }
+    .gs-prompt {
+      background: none; color: inherit; font-family: inherit; cursor: pointer;
+      min-height: 48px; transition: background 0.2s, border-color 0.2s, color 0.2s;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .gs-prompt:hover, .gs-prompt:focus-visible { background: var(--accent-2); border-color: var(--accent-2); opacity: 1; outline: none; }
+    .gs-prompt svg { width: 1.2rem; height: 1.2rem; flex: none; }
+    .gs-hint { font-size: 0.85rem; opacity: 0.6; margin: 0.9rem 0 0; }
+    .gs-ok { display: none; font-size: 0.95rem; color: var(--accent); margin: 1.25rem auto 0; max-width: 26rem; line-height: 1.5; }
+    .gs-ok.show { display: block; }
+    .gs-main .form-error { max-width: 26rem; margin: 1.25rem auto 0; text-align: left; }
+    .gs-main .form-error.show { display: block; }
     .gs-fine {
       font-size: 0.8rem;
       opacity: 0.55;
@@ -142,15 +156,24 @@
 
   <div class="content">
 
-    <nav class="nav">
+    <nav class="nav" aria-label="Main">
       <a class="nav-logo" href="index.html">
-        <img src="BlackLogoONLY.png" alt="Zan Media Group" />
+        <img src="logo.png" alt="Zan Media Group" width="60" height="60" />
         <span class="nav-logo-text">Zan Media Group</span>
       </a>
       <div class="nav-right">
-        <a class="nav-link" href="services.html">Services</a>
-        <a class="nav-link" href="about.html">About</a>
+        <div class="nav-menu" id="nav-menu">
+          <a class="nav-link nav-only-mobile" href="index.html">Home</a>
+          <a class="nav-link" href="services.html">Services</a>
+          <a class="nav-link" href="about.html">About</a>
+          <a class="nav-link nav-only-mobile" href="tel:+16147017824">Call or text (614)&nbsp;701-7824</a>
+          <a class="nav-link nav-only-mobile" href="mailto:zane@zanmediagroup.com">zane@zanmediagroup.com</a>
+        </div>
         <a class="nav-cta active" href="get-started.html">Get Started</a>
+        <button type="button" class="nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="nav-menu">
+          <svg class="icon-open" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+          <svg class="icon-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+        </button>
       </div>
     </nav>
 
@@ -159,29 +182,68 @@
         <p class="gs-label">Get Started</p>
         <h1 class="gs-h1">More local leads,<br>less chasing.</h1>
         <p class="gs-sub">Start a chat below. Drop your name and number and we'll text you right back to talk through what running ads could look like for your business.</p>
-        <span class="gs-prompt">
-          <i class="ti ti-arrow-down"></i>
-          Tap the chat in the bottom-right corner to begin
-        </span>
+        <button type="button" class="gs-prompt" id="gs-open-chat">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z"/></svg>
+          Start a chat
+        </button>
+        <p class="gs-hint">Or tap the chat bubble in the bottom-right corner.</p>
+        <p class="gs-ok" id="gs-ok" role="status">Chat is open. Enter your name and number there and we&#39;ll text you right back.</p>
+        <p class="form-error" id="gs-error" role="alert">The chat didn&#39;t load. Call or text <a href="tel:+16147017824">(614)&nbsp;701-7824</a> or email <a href="mailto:zane@zanmediagroup.com">zane@zanmediagroup.com</a> and we&#39;ll get right back to you.</p>
         <p class="gs-fine">By starting a chat and submitting your number, you agree to receive text messages from Zan Media Group about your inquiry. Message and data rates may apply. Reply STOP to opt out.</p>
       </div>
     </main>
 
     <footer class="footer">
-      <span class="footer-copy">© 2026 Zan Media Group</span>
+      <span class="footer-copy">© <span data-year>2026</span> Zan Media Group</span>
       <div class="footer-links">
         <a href="mailto:zane@zanmediagroup.com">zane@zanmediagroup.com</a>
         <a href="tel:+16147017824">(614)&nbsp;701-7824</a>
         <a href="facebook-ads-wilmington-nc.html">Wilmington contractors</a>
         <a href="results.html">Results</a>
-        <a href="privacy.html">Privacy &amp; Terms</a>
+        <a href="privacy.html">Privacy Policy</a>
+        <a href="terms.html">Terms of Use</a>
       </div>
       <span class="footer-loc">Wilmington, NC 28409</span>
     </footer>
 
   </div>
 
+  <!-- "Start a chat" button, plus what the visitor sees if the chat can't load -->
+  <script>
+  (function () {
+    var btn = document.getElementById('gs-open-chat');
+    var ok = document.getElementById('gs-ok');
+    var err = document.getElementById('gs-error');
+    var loaded = false;
+
+    function show(el, on) { el.classList.toggle('show', on); }
+    function widget() { return window.leadConnector && window.leadConnector.chatWidget; }
+
+    window.addEventListener('LC_chatWidgetLoaded', function () {
+      loaded = true;
+      show(err, false);
+    }, false);
+
+    /* Called by the loader script tag below if the chat script is blocked or unreachable */
+    window.zmgChatFailed = function () { if (!loaded) { show(ok, false); show(err, true); } };
+
+    /* Slow connection: say so after 12 seconds, and take it back if the chat shows up late */
+    setTimeout(function () { if (!loaded) window.zmgChatFailed(); }, 12000);
+
+    btn.addEventListener('click', function () {
+      var w = widget();
+      if (w && typeof w.openWidget === 'function') {
+        w.openWidget();
+        show(err, false);
+        show(ok, true);
+      } else {
+        window.zmgChatFailed();
+      }
+    });
+  })();
+  </script>
+
   <!-- GoHighLevel Chat Widget (the only opt-in mechanism on this page) -->
-  <script src="https://widgets.leadconnectorhq.com/loader.js" data-resources-url="https://widgets.leadconnectorhq.com/chat-widget/loader.js" data-widget-id="6a3218b90e84ef9ef968e332"></script>
+  <script src="https://widgets.leadconnectorhq.com/loader.js" data-resources-url="https://widgets.leadconnectorhq.com/chat-widget/loader.js" data-widget-id="6a3218b90e84ef9ef968e332" onerror="window.zmgChatFailed && window.zmgChatFailed()"></script>
 </body>
 </html>

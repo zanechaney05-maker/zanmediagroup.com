@@ -5,7 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Facebook Ads for Wilmington, NC Contractors | Zan Media Group</title>
   <meta name="description" content="Facebook and Instagram ads for roofing, HVAC, plumbing and electrical contractors in Wilmington, NC and nearby. Every lead texted and booked in 60 seconds." />
-  <link rel="icon" type="image/png" href="BlackLogoONLY.png" />
+  <link rel="icon" href="favicon.ico" sizes="48x48" />
+  <link rel="icon" type="image/png" sizes="192x192" href="icon-192.png" />
+  <link rel="apple-touch-icon" href="apple-touch-icon.png" />
+  <meta name="theme-color" content="#0b0b0d" />
   <link rel="canonical" href="https://zanmediagroup.com/facebook-ads-wilmington-nc.html" />
 
   <!-- Open Graph -->
@@ -131,6 +134,8 @@
   </script>
 
   <link rel="stylesheet" href="styles.css" />
+  <script>document.documentElement.classList.add('js');</script>
+  <script src="site.js" defer></script>
 
   <!-- Meta Pixel Code -->
   <script>
@@ -155,15 +160,24 @@
 
   <div class="content">
 
-    <nav class="nav">
+    <nav class="nav" aria-label="Main">
       <a class="nav-logo" href="index.html">
-        <img src="BlackLogoONLY.png" alt="Zan Media Group" />
+        <img src="logo.png" alt="Zan Media Group" width="60" height="60" />
         <span class="nav-logo-text">Zan Media Group</span>
       </a>
       <div class="nav-right">
-        <a class="nav-link" href="services.html">Services</a>
-        <a class="nav-link" href="about.html">About</a>
+        <div class="nav-menu" id="nav-menu">
+          <a class="nav-link nav-only-mobile" href="index.html">Home</a>
+          <a class="nav-link" href="services.html">Services</a>
+          <a class="nav-link" href="about.html">About</a>
+          <a class="nav-link nav-only-mobile" href="tel:+16147017824">Call or text (614)&nbsp;701-7824</a>
+          <a class="nav-link nav-only-mobile" href="mailto:zane@zanmediagroup.com">zane@zanmediagroup.com</a>
+        </div>
         <a class="nav-cta" href="get-started.html">Get Started</a>
+        <button type="button" class="nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="nav-menu">
+          <svg class="icon-open" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+          <svg class="icon-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+        </button>
       </div>
     </nav>
 
@@ -305,13 +319,14 @@
     </section>
 
     <footer class="footer">
-      <span class="footer-copy">© 2026 Zan Media Group</span>
+      <span class="footer-copy">© <span data-year>2026</span> Zan Media Group</span>
       <div class="footer-links">
         <a href="mailto:zane@zanmediagroup.com">zane@zanmediagroup.com</a>
         <a href="tel:+16147017824">(614)&nbsp;701-7824</a>
         <a href="facebook-ads-wilmington-nc.html">Wilmington contractors</a>
         <a href="results.html">Results</a>
-        <a href="privacy.html">Privacy &amp; Terms</a>
+        <a href="privacy.html">Privacy Policy</a>
+        <a href="terms.html">Terms of Use</a>
       </div>
       <span class="footer-loc">Wilmington, NC 28409</span>
     </footer>

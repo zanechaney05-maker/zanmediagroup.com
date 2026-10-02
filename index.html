@@ -5,8 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Contractor Facebook Ads in Wilmington, NC | Zan Media Group</title>
   <meta name="description" content="Zan Media Group runs Facebook and Instagram ads for home-service contractors in Wilmington, NC, then texts and books every new lead within 60 seconds." />
-  <link rel="icon" type="image/png" href="BlackLogoONLY.png" />
-  <link rel="apple-touch-icon" href="BlackLogoONLY.png" />
+  <link rel="icon" href="favicon.ico" sizes="48x48" />
+  <link rel="icon" type="image/png" sizes="192x192" href="icon-192.png" />
+  <link rel="apple-touch-icon" href="apple-touch-icon.png" />
+  <meta name="theme-color" content="#0b0b0d" />
   <link rel="canonical" href="https://zanmediagroup.com/" />
 
   <!-- Open Graph -->
@@ -168,6 +170,8 @@
   </script>
 
   <link rel="stylesheet" href="styles.css" />
+  <script>document.documentElement.classList.add('js');</script>
+  <script src="site.js" defer></script>
 
   <!-- Meta Pixel Code -->
   <script>
@@ -244,6 +248,7 @@
       <p class="modal-label">Zan Media Group</p>
       <h2 class="modal-h2">Want more booked jobs?</h2>
       <p class="modal-p">Tell us about your business and we'll text you within a minute to talk through what running ads could look like. No pressure, no jargon.</p>
+      <p class="form-error" role="alert">The form can&#39;t load right now. Call or text <a href="tel:+16147017824">(614)&nbsp;701-7824</a> or email <a href="mailto:zane@zanmediagroup.com">zane@zanmediagroup.com</a> and we&#39;ll get right back to you.</p>
       <div class="ghl-form ghl-form--modal">
         <iframe
           src="https://api.leadconnectorhq.com/widget/form/VayIe4agY2a5ppz99Q6E"
@@ -268,15 +273,24 @@
 
   <div class="content">
 
-    <nav class="nav">
+    <nav class="nav" aria-label="Main">
       <a class="nav-logo" href="index.html">
-        <img src="BlackLogoONLY.png" alt="Zan Media Group" />
+        <img src="logo.png" alt="Zan Media Group" width="60" height="60" />
         <span class="nav-logo-text">Zan Media Group</span>
       </a>
       <div class="nav-right">
-        <a class="nav-link" href="services.html">Services</a>
-        <a class="nav-link" href="about.html">About</a>
+        <div class="nav-menu" id="nav-menu">
+          <a class="nav-link nav-only-mobile active" href="index.html">Home</a>
+          <a class="nav-link" href="services.html">Services</a>
+          <a class="nav-link" href="about.html">About</a>
+          <a class="nav-link nav-only-mobile" href="tel:+16147017824">Call or text (614)&nbsp;701-7824</a>
+          <a class="nav-link nav-only-mobile" href="mailto:zane@zanmediagroup.com">zane@zanmediagroup.com</a>
+        </div>
         <a class="nav-cta" href="get-started.html">Get Started</a>
+        <button type="button" class="nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="nav-menu">
+          <svg class="icon-open" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+          <svg class="icon-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+        </button>
       </div>
     </nav>
 
@@ -291,7 +305,7 @@
       <p class="section-label">What we do</p>
       <div class="services-grid">
         <div class="service-card">
-          <p class="service-num">-01-</p>
+          <p class="service-num">01</p>
           <p class="service-title">Business setup</p>
           <p class="service-desc">Full digital presence built and ready: Facebook, Instagram, Meta Business Manager.</p>
         </div>
@@ -404,6 +418,7 @@
       <div class="contact-inner">
         <h2 class="contact-h2">Ready to get more jobs?</h2>
         <p class="contact-p">Fill this out and we'll text you within a minute to talk through what running ads could look like for your business. No pressure, no jargon.</p>
+        <p class="form-error" role="alert">The form can&#39;t load right now. Call or text <a href="tel:+16147017824">(614)&nbsp;701-7824</a> or email <a href="mailto:zane@zanmediagroup.com">zane@zanmediagroup.com</a> and we&#39;ll get right back to you.</p>
         <div class="ghl-form">
           <iframe
             src="https://api.leadconnectorhq.com/widget/form/NWkth8ShdtScF7DPefAU"
@@ -422,19 +437,21 @@
             data-form-id="NWkth8ShdtScF7DPefAU"
             data-cookie-consent="false"
             title="ZMG Website Lead Form"></iframe>
-          <script src="https://link.msgsndr.com/js/form_embed.js"></script>
+          <script src="https://link.msgsndr.com/js/form_embed.js" onerror="document.documentElement.classList.add('ghl-failed')"></script>
         </div>
+        <p class="form-help">Rather talk now? Call or text <a href="tel:+16147017824">(614)&nbsp;701-7824</a> or email <a href="mailto:zane@zanmediagroup.com">zane@zanmediagroup.com</a>.</p>
       </div>
     </section>
 
     <footer class="footer">
-      <span class="footer-copy">© 2026 Zan Media Group</span>
+      <span class="footer-copy">© <span data-year>2026</span> Zan Media Group</span>
       <div class="footer-links">
         <a href="mailto:zane@zanmediagroup.com">zane@zanmediagroup.com</a>
         <a href="tel:+16147017824">(614)&nbsp;701-7824</a>
         <a href="facebook-ads-wilmington-nc.html">Wilmington contractors</a>
         <a href="results.html">Results</a>
-        <a href="privacy.html">Privacy &amp; Terms</a>
+        <a href="privacy.html">Privacy Policy</a>
+        <a href="terms.html">Terms of Use</a>
       </div>
       <span class="footer-loc">Wilmington, NC 28409</span>
     </footer>
