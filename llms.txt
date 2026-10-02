@@ -36,3 +36,4 @@ Website: https://zanmediagroup.com
 - Results: https://zanmediagroup.com/results.html
 - About: https://zanmediagroup.com/about.html
 - Get started: https://zanmediagroup.com/get-started.html
+- LinkedIn: https://www.linkedin.com/company/zan-media-group
