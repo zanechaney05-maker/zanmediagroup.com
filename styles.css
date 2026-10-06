@@ -81,6 +81,8 @@ body { background: #0b0b0d; color: #fff; font-family: -apple-system, BlinkMacSys
 .service-num { font-size: 11px; color: var(--accent); opacity: 0.85; margin-bottom: 1rem; letter-spacing: 0.1em; }
 .service-title { font-size: 14px; font-weight: 500; color: #efefef; margin-bottom: 0.5rem; }
 .service-desc { font-size: 13px; color: #8c8c8c; line-height: 1.6; }
+.service-desc a { color: var(--accent); text-decoration: none; }
+.service-desc a:hover { text-decoration: underline; }
 
 /* PLANS (services page) */
 .plans-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); margin-bottom: 1.5rem; }
