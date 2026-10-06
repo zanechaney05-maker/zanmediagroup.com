@@ -111,6 +111,7 @@
     }
   }
   </script>
+  <link rel="preload" href="fonts/archivo.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="stylesheet" href="styles.css" />
 
   <!-- Meta Pixel Code -->
@@ -152,12 +153,12 @@
       <div class="nav-right">
         <a class="nav-link active" href="services.html">Services</a>
         <a class="nav-link" href="about.html">About</a>
+        <a class="nav-link nav-phone" href="tel:+19107149175">(910)&nbsp;714-9175</a>
         <a class="nav-cta" href="get-started.html">Get Started</a>
       </div>
     </nav>
 
     <section class="page-hero">
-      <p class="hero-label">Services</p>
       <h1 class="hero-h1">Everything handled.<br><span>Nothing hidden.</span></h1>
       <p class="hero-sub">We run your Facebook and Instagram ads, then text, qualify and book every new lead within 60 seconds. Three plans, one system. Here&#39;s exactly what you get.</p>
     </section>
@@ -165,7 +166,6 @@
     <section class="detail-section">
       <div class="detail-inner">
         <div class="detail-label">
-          <p class="detail-num">01</p>
           <h2 class="detail-h2">Business setup</h2>
         </div>
         <div class="detail-body">
@@ -178,7 +178,6 @@
     <section class="detail-section">
       <div class="detail-inner">
         <div class="detail-label">
-          <p class="detail-num">02</p>
           <h2 class="detail-h2">Ad management</h2>
         </div>
         <div class="detail-body">
@@ -191,7 +190,6 @@
     <section class="detail-section">
       <div class="detail-inner">
         <div class="detail-label">
-          <p class="detail-num">03</p>
           <h2 class="detail-h2">Lead generation</h2>
         </div>
         <div class="detail-body">
@@ -205,7 +203,6 @@
     <section class="detail-section">
       <div class="detail-inner">
         <div class="detail-label">
-          <p class="detail-num">04</p>
           <h2 class="detail-h2">Weekly reporting</h2>
         </div>
         <div class="detail-body">
@@ -216,30 +213,42 @@
     </section>
 
     <section class="gray-band" id="plans">
-      <p class="section-label">Plans</p>
-      <div class="services-grid plans-grid">
-        <div class="service-card">
-          <p class="service-num">STARTER</p>
-          <p class="service-title">$1,500/mo + ad spend</p>
-          <p class="service-desc">Full campaign build and management, ad creative and copy, lead capture system, weekly performance report.</p>
-        </div>
-        <div class="service-card">
-          <p class="service-num">GROWTH · MOST POPULAR</p>
-          <p class="service-title">$1,000/mo + $75 per booked appointment + ad spend</p>
-          <p class="service-desc">Everything in Starter, plus 60-second speed-to-lead follow-up and automated appointment setting. You pay more only when it works.</p>
-        </div>
-        <div class="service-card">
-          <p class="service-num">PARTNER</p>
-          <p class="service-title">$2,500/mo + ad spend</p>
-          <p class="service-desc">Everything in Growth, plus market exclusivity in your area, priority optimization and a monthly strategy call.</p>
-        </div>
-      </div>
+      <h2 class="section-label">Plans</h2>
+      <table class="rates">
+        <thead>
+          <tr>
+            <th scope="col">Plan</th>
+            <th scope="col">Per month</th>
+            <th scope="col">Per booked appointment</th>
+            <th scope="col">What you get</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">Starter</th>
+            <td class="rate-amt" data-label="Per month">$1,500 <small>+ ad spend</small></td>
+            <td data-label="Per booked appointment">None</td>
+            <td>Full campaign build and management, ad creative and copy, lead capture system, weekly performance report.</td>
+          </tr>
+          <tr>
+            <th scope="row">Growth<small>The one we recommend</small></th>
+            <td class="rate-amt" data-label="Per month">$1,000 <small>+ ad spend</small></td>
+            <td class="rate-amt" data-label="Per booked appointment">$75</td>
+            <td>Everything in Starter, plus 60-second speed-to-lead follow-up and automated appointment setting. You pay more only when it works.</td>
+          </tr>
+          <tr>
+            <th scope="row">Partner</th>
+            <td class="rate-amt" data-label="Per month">$2,500 <small>+ ad spend</small></td>
+            <td data-label="Per booked appointment">None</td>
+            <td>Everything in Growth, plus market exclusivity in your area, priority optimization and a monthly strategy call.</td>
+          </tr>
+        </tbody>
+      </table>
       <p class="stat-note">Every plan: $500 one-time setup (ad account and Pixel, lead funnel, speed-to-lead automation, compliant texting registration, CRM and calendar build). Ad spend is always separate and paid by you directly to Meta. 90-day first term, then month-to-month with 30 days notice.</p>
       <p class="stat-note"><strong>Our guarantee:</strong> we keep working for free until you get your first 5 qualified leads.</p>
     </section>
 
     <section class="contact-band">
-      <p class="section-label">Next step</p>
       <div class="contact-inner">
         <h2 class="contact-h2">Want this for your business?</h2>
         <p class="contact-p">It starts with a free strategy call. Tell us about your business and we'll show you what running ads could look like.</p>
