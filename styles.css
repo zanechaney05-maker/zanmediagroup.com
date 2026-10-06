@@ -6,7 +6,8 @@
   --accent-glow: rgba(139,92,246,0.16);
 }
 
-html, body { overflow-x: hidden; }
+html { overflow-x: hidden; }
+body { overflow-x: clip; }
 * { box-sizing: border-box; margin: 0; padding: 0; }
 body { background: #0b0b0d; color: #fff; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; }
 
@@ -88,17 +89,18 @@ body { background: #0b0b0d; color: #fff; font-family: -apple-system, BlinkMacSys
 .plans-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); margin-bottom: 1.5rem; }
 .plans-grid .service-title { font-size: 16px; }
 
-.white-section { background: #fff; padding: 4rem max(2.5rem, calc((100% - 1240px) / 2)); }
-.white-section .section-label { color: #666; }
+/* "How it works" band. Kept on the brand black so the page stays black and purple. */
+.white-section { background: #0b0b0d; padding: 4rem max(2.5rem, calc((100% - 1240px) / 2)); }
+.white-section .section-label { color: #888; }
 .process-steps {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
   gap: 12px;
 }
-.step { background: #f5f5f3; border-radius: 8px; padding: 1.75rem 1.5rem; }
-.step-num { font-size: 11px; color: #666; margin-bottom: 1rem; letter-spacing: 0.1em; }
-.step-title { font-size: 14px; font-weight: 500; color: #111; margin-bottom: 0.5rem; }
-.step-desc { font-size: 13px; color: #5f5f5f; line-height: 1.6; }
+.step { background: #131313; border: 0.5px solid #262626; border-radius: 8px; padding: 1.75rem 1.5rem; }
+.step-num { font-size: 11px; color: var(--accent); opacity: 0.85; margin-bottom: 1rem; letter-spacing: 0.1em; }
+.step-title { font-size: 14px; font-weight: 500; color: #fff; margin-bottom: 0.5rem; }
+.step-desc { font-size: 13px; color: #999; line-height: 1.6; }
 
 /* DETAIL SECTIONS (services page) */
 .detail-section { padding: 2.75rem max(2.5rem, calc((100% - 1240px) / 2)); border-bottom: 0.5px solid #232323; }
@@ -243,8 +245,9 @@ body { background: #0b0b0d; color: #fff; font-family: -apple-system, BlinkMacSys
   .hero-h1 { font-size: 28px; }
   .page-hero { padding: 3rem 1.5rem 2rem; }
   .page-hero .hero-h1 { font-size: 26px; }
-  .nav { padding: 1rem 1.25rem; }
-  .nav-logo img { height: 44px; }
+  /* Sticky on phones so the Get Started button is always one tap away */
+  .nav { position: sticky; top: 0; z-index: 50; padding: 0.6rem 1.25rem; background: rgba(11,11,13,0.96); }
+  .nav-logo img { height: 38px; }
   .nav-logo-text { display: none; }
   .nav-right { gap: 12px; }
   .nav-link { font-size: 13px; }
@@ -270,3 +273,16 @@ body { background: #0b0b0d; color: #fff; font-family: -apple-system, BlinkMacSys
   .contact-inner:has(.ghl-form) { padding: 1.75rem 0.75rem 0.75rem; }
   .contact-inner:has(.ghl-form) .contact-h2, .contact-inner:has(.ghl-form) .contact-p { padding: 0 0.75rem; }
 }
+
+/* BREADCRUMBS (trade and area pages) */
+.crumbs { font-size: 12px; color: #8a8a8a; margin-bottom: 1.25rem; }
+.crumbs ol { list-style: none; display: flex; flex-wrap: wrap; gap: 6px; }
+.crumbs li + li::before { content: "/"; margin-right: 6px; color: #555; }
+.crumbs a { color: #8a8a8a; text-decoration: none; }
+.crumbs a:hover { color: var(--accent); }
+.crumbs [aria-current] { color: #c5c5c5; }
+
+/* 404 */
+.notfound-links { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 1.75rem; }
+.notfound-links a.plain { color: var(--accent); font-size: 14px; text-decoration: none; padding: 12px 4px; }
+.notfound-links a.plain:hover { text-decoration: underline; }
