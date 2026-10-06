@@ -2,7 +2,7 @@
 
 :root {
   --accent: #b69bff;
-  --accent-2: #8b5cf6;
+  --accent-2: #7c3aed;
   --accent-glow: rgba(139,92,246,0.16);
 }
 
@@ -42,8 +42,8 @@ body { background: #0b0b0d; color: #fff; font-family: -apple-system, BlinkMacSys
   background: var(--accent-2); border: none;
   transition: background 0.2s;
 }
-.nav-cta:hover { background: var(--accent); }
-.nav-cta.active { background: var(--accent); box-shadow: 0 0 0 1px rgba(255,255,255,0.25) inset; }
+.nav-cta:hover { background: var(--accent); color: #0b0b0d; }
+.nav-cta.active { background: var(--accent); color: #0b0b0d; box-shadow: 0 0 0 1px rgba(255,255,255,0.25) inset; }
 
 /* HERO (homepage) */
 .hero { padding: 5.5rem max(2.5rem, calc((100% - 1240px) / 2)) 4rem; }
@@ -57,7 +57,7 @@ body { background: #0b0b0d; color: #fff; font-family: -apple-system, BlinkMacSys
   border-radius: 4px; text-decoration: none;
   transition: background 0.2s;
 }
-.hero-btn:hover { background: var(--accent); }
+.hero-btn:hover { background: var(--accent); color: #0b0b0d; }
 
 /* PAGE HERO (subpages) */
 .page-hero { padding: 3.5rem max(2.5rem, calc((100% - 1240px) / 2)) 2.25rem; }
@@ -89,16 +89,16 @@ body { background: #0b0b0d; color: #fff; font-family: -apple-system, BlinkMacSys
 .plans-grid .service-title { font-size: 16px; }
 
 .white-section { background: #fff; padding: 4rem max(2.5rem, calc((100% - 1240px) / 2)); }
-.white-section .section-label { color: #aaa; }
+.white-section .section-label { color: #666; }
 .process-steps {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
   gap: 12px;
 }
 .step { background: #f5f5f3; border-radius: 8px; padding: 1.75rem 1.5rem; }
-.step-num { font-size: 11px; color: #bbb; margin-bottom: 1rem; letter-spacing: 0.1em; }
+.step-num { font-size: 11px; color: #666; margin-bottom: 1rem; letter-spacing: 0.1em; }
 .step-title { font-size: 14px; font-weight: 500; color: #111; margin-bottom: 0.5rem; }
-.step-desc { font-size: 13px; color: #888; line-height: 1.6; }
+.step-desc { font-size: 13px; color: #5f5f5f; line-height: 1.6; }
 
 /* DETAIL SECTIONS (services page) */
 .detail-section { padding: 2.75rem max(2.5rem, calc((100% - 1240px) / 2)); border-bottom: 0.5px solid #232323; }
@@ -129,9 +129,9 @@ body { background: #0b0b0d; color: #fff; font-family: -apple-system, BlinkMacSys
 }
 .stat-value { font-size: 32px; font-weight: 500; color: var(--accent); margin-bottom: 0.4rem; }
 .stat-label { font-size: 13px; color: #999; line-height: 1.5; }
-.stat-note { font-size: 12px; color: #777; margin-top: 1.5rem; line-height: 1.6; }
+.stat-note { font-size: 12px; color: #909090; margin-top: 1.5rem; line-height: 1.6; }
 
-.legal-meta { font-size: 12px; color: #777; margin-bottom: 0; }
+.legal-meta { font-size: 12px; color: #8a8a8a; margin-bottom: 0; }
 
 /* CONTACT */
 .contact-band {
@@ -174,7 +174,7 @@ body { background: #0b0b0d; color: #fff; font-family: -apple-system, BlinkMacSys
   padding: 12px 28px; font-size: 14px; font-weight: 500;
   cursor: pointer; font-family: inherit; transition: background 0.2s;
 }
-.zmg-form button:hover { background: var(--accent); }
+.zmg-form button:hover { background: var(--accent); color: #0b0b0d; }
 .zmg-thanks { display: none; color: var(--accent); font-size: 13px; margin-top: 4px; }
 
 /* POPUP MODAL */
@@ -222,12 +222,12 @@ body { background: #0b0b0d; color: #fff; font-family: -apple-system, BlinkMacSys
   display: flex; justify-content: space-between; align-items: center;
   gap: 12px; flex-wrap: wrap;
 }
-.footer-copy { font-size: 12px; color: #707070; }
+.footer-copy { font-size: 12px; color: #8a8a8a; }
 .footer-links { display: flex; gap: 8px 16px; flex-wrap: wrap; justify-content: center; }
 .footer-links a { white-space: nowrap; }
-.footer-links a { font-size: 12px; color: #707070; text-decoration: none; }
+.footer-links a { font-size: 12px; color: #8a8a8a; text-decoration: none; }
 .footer-links a:hover { color: var(--accent); }
-.footer-loc { font-size: 12px; color: #707070; }
+.footer-loc { font-size: 12px; color: #8a8a8a; }
 
 /* TABLET — stack the two-column detail rows */
 @media (max-width: 800px) {
