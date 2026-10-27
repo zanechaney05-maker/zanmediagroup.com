@@ -21,22 +21,12 @@
 
   <link rel="preload" href="fonts/archivo.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="stylesheet" href="styles.css?v=20261012" />
+  <script src="/consent.js?v=20261027"></script>
 
-  <!-- Meta Pixel (this page's conversion path is the GoHighLevel chat
-       widget below, not a plain HTML form, so Lead is tracked via the
-       widget's registerBeforeSubmit hook instead of a form submit event) -->
+  <!-- Lead event for the chat widget below. Like every fbq() call, it waits in the
+       queue and is only sent after the visitor accepts cookies (see consent.js).
+       The phone number is never sent to Meta, as the Privacy Policy promises. -->
   <script>
-  !function(f,b,e,v,n,t,s)
-  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-  n.queue=[];t=b.createElement(e);t.async=!0;
-  t.src=v;s=b.getElementsByTagName(e)[0];
-  s.parentNode.insertBefore(t,s)}(window, document,'script',
-  'https://connect.facebook.net/en_US/fbevents.js');
-  fbq('set', 'autoConfig', false, '1217284990404446');
-  fbq('init', '1217284990404446');
-  fbq('track', 'PageView');
 
   async function sha256(str) {
     const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(str));
@@ -57,17 +47,13 @@
       Promise.resolve().then(async function() {
         try {
           const email = String(values.email || '').trim().toLowerCase();
-          const phone = String(values.phone || '').replace(/\D/g,'');
           const name  = String(values.name || values.first_name || '').trim().toLowerCase();
-          const parts = name.split(' ');
-          const fn = parts[0] || '';
-          const ln = parts[parts.length - 1] || '';
-          const [hashedEmail, hashedPhone, hashedFn, hashedLn] = await Promise.all([
-            sha256(email), sha256(phone), sha256(fn), sha256(ln)
-          ]);
-          fbq('init', '1217284990404446', {
-            em: hashedEmail, ph: hashedPhone, fn: hashedFn, ln: hashedLn
-          });
+          const parts = name.split(' ').filter(Boolean);
+          const match = {};
+          if (email) match.em = await sha256(email);
+          if (parts.length) match.fn = await sha256(parts[0]);
+          if (parts.length > 1) match.ln = await sha256(parts[parts.length - 1]);
+          if (Object.keys(match).length) fbq('init', '1217284990404446', match);
         } catch (err) { /* still report the Lead even if hashing fails */ }
         fbq('track', 'Lead', {value: 500, currency: 'USD'}, {
           eventID: 'lead_' + Date.now() + '_' + Math.random().toString(36).slice(2)
@@ -77,14 +63,6 @@
     });
   }, false);
   </script>
-  <noscript><img height="1" width="1" style="display:none"
-  src="https://www.facebook.com/tr?id=1217284990404446&ev=PageView&noscript=1"
-  /></noscript>
-  <!-- End Meta Pixel -->
-  <!-- NOTE: verify that values.email / values.phone / values.name above match
-       the actual field keys your GoHighLevel pre-chat form uses -- these are
-       the standard field names but sub-account chat form configs can vary.
-       Confirm with a real test chat in Meta Events Manager's Test Events tab. -->
 
   <style>
     /* Page-specific styling for the get-started page */
@@ -135,20 +113,12 @@
     .gs-prompt i { font-size: 1.2rem; }
     .gs-fine {
       font-size: 0.8rem;
-      opacity: 0.55;
+      color: #55555c;
       margin: 1.75rem auto 0;
       max-width: 26rem;
       line-height: 1.5;
     }
   </style>
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-WXLGHLFHMK"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-WXLGHLFHMK');
-  </script>
 </head>
 <body>
 
@@ -176,7 +146,7 @@
           <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-3px"><path d="M12 5v14"/><path d="M18 13l-6 6-6-6"/></svg>
           Tap the chat in the bottom-right corner to begin
         </span>
-        <p class="gs-fine">By starting a chat and submitting your number, you agree to receive text messages from Zan Media Group about your inquiry. Message and data rates may apply. Reply STOP to opt out.</p>
+        <p class="gs-fine">By starting a chat and submitting your number, you agree to receive non-marketing text messages from Zan Media Group about your inquiry, including follow-up questions and appointment scheduling. Message frequency varies. Message and data rates may apply. Reply HELP for help or STOP to opt out. Agreeing to texts is not a condition of any purchase. Chats are recorded and stored by Zan Media Group and our messaging provider. See our <a href="privacy.html">Privacy Policy</a> and <a href="terms.html">Terms</a>.</p>
       </div>
     </main>
 
@@ -190,6 +160,7 @@
         <a href="results.html">Results</a>
         <a href="privacy.html">Privacy</a>
         <a href="terms.html">Terms</a>
+        <a href="/privacy.html#cookies" data-cookie-settings>Cookie choices</a>
       </div>
       <span class="footer-loc">Wilmington, NC 28409</span>
       <a class="footer-pref" href="https://www.google.com/preferences/source?q=zanmediagroup.com" target="_blank" rel="noopener">Add Zan Media Group as a preferred source on Google</a>
