@@ -49,6 +49,16 @@ body {
 /* Column layout so the footer sits at the bottom on short pages (404, thank-you). */
 .content { position: relative; z-index: 1; min-height: 100vh; display: flex; flex-direction: column; }
 .content > .footer { margin-top: auto; }
+/* Main landmark wraps the page body; keeps the same column layout the sections had before. */
+.content > main:not(.gs-main) { display: flex; flex-direction: column; }
+
+/* Skip link: hidden until a keyboard user tabs to it. */
+.skip-link {
+  position: absolute; left: 8px; top: -100px; z-index: 1000;
+  background: var(--ink); color: #fff; padding: 0.6rem 1rem; border-radius: 6px;
+  font-weight: 700; text-decoration: none;
+}
+.skip-link:focus { top: 8px; outline: 3px solid var(--purple-soft); outline-offset: 2px; }
 
 a { color: var(--purple); }
 a:focus-visible, button:focus-visible {
