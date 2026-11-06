@@ -233,24 +233,41 @@
       <button type="button" class="modal-close" aria-label="Close">&times;</button>
       <h2 class="modal-h2">Want more booked jobs?</h2>
       <p class="modal-p">Tell us about your business and we'll text you within a minute to talk through what running ads could look like. No pressure, no jargon.</p>
-      <div class="ghl-form ghl-form--modal">
-        <iframe
-          src="https://api.leadconnectorhq.com/widget/form/VayIe4agY2a5ppz99Q6E"
-          style="width:100%;height:756px;border:none;border-radius:8px"
-          id="inline-VayIe4agY2a5ppz99Q6E"
-          data-layout="{'id':'INLINE'}"
-          data-trigger-type="alwaysShow"
-          data-trigger-value=""
-          data-activation-type="alwaysActivated"
-          data-activation-value=""
-          data-deactivation-type="neverDeactivate"
-          data-deactivation-value=""
-          data-form-name="ZMG Popup Form"
-          data-height="756"
-          data-layout-iframe-id="inline-VayIe4agY2a5ppz99Q6E"
-          data-form-id="VayIe4agY2a5ppz99Q6E"
-          data-cookie-consent="false"
-          title="ZMG Popup Form"></iframe>
+      <div class="zq-wrap zq-wrap--modal">
+      <form class="zq" id="m-quiz" data-zmg-quiz novalidate>
+        <p class="zq-progress" id="m-progress" aria-live="polite">Question 1 of 4</p>
+        <div class="zq-bar" aria-hidden="true"><span></span></div>
+        <fieldset class="zq-step" data-step="1">
+          <legend class="zq-q" tabindex="-1">What kind of work does your business do?</legend>
+          <div class="zq-tiles zq-tiles--3" data-required-group data-error="m-trade-err" aria-describedby="m-trade-err"><label class="zq-tile"><input type="radio" name="business_type" value="Roofing"><span>Roofing</span></label><label class="zq-tile"><input type="radio" name="business_type" value="HVAC"><span>HVAC</span></label><label class="zq-tile"><input type="radio" name="business_type" value="Plumbing"><span>Plumbing</span></label><label class="zq-tile"><input type="radio" name="business_type" value="Electrical"><span>Electrical</span></label><label class="zq-tile"><input type="radio" name="business_type" value="Landscaping"><span>Landscaping</span></label><label class="zq-tile"><input type="radio" name="business_type" value="Painting"><span>Painting</span></label><label class="zq-tile"><input type="radio" name="business_type" value="Remodeling or general contracting"><span>Remodeling or general contracting</span></label><label class="zq-tile"><input type="radio" name="business_type" value="Cleaning or pressure washing"><span>Cleaning or pressure washing</span></label><label class="zq-tile"><input type="radio" name="business_type" value="Something else"><span>Something else</span></label></div><p class="zq-error" id="m-trade-err" role="alert"></p>
+        </fieldset>
+        <fieldset class="zq-step" data-step="2">
+          <legend class="zq-q" tabindex="-1">Are you running ads for your business right now?</legend>
+          <div class="zq-tiles" data-required-group data-error="m-ads-err" aria-describedby="m-ads-err"><label class="zq-tile"><input type="radio" name="running_ads" value="Not yet"><span>Not yet</span></label><label class="zq-tile"><input type="radio" name="running_ads" value="Yes, on Facebook or Instagram"><span>Yes, on Facebook or Instagram</span></label><label class="zq-tile"><input type="radio" name="running_ads" value="Yes, on Google"><span>Yes, on Google</span></label><label class="zq-tile"><input type="radio" name="running_ads" value="Tried it and stopped"><span>Tried it and stopped</span></label></div><p class="zq-error" id="m-ads-err" role="alert"></p>
+        </fieldset>
+        <fieldset class="zq-step" data-step="3">
+          <legend class="zq-q" tabindex="-1">How many more jobs a month could your crew take on?</legend>
+          <div class="zq-tiles" data-required-group data-error="m-cap-err" aria-describedby="m-cap-err"><label class="zq-tile"><input type="radio" name="capacity" value="1 to 5 more"><span>1 to 5 more</span></label><label class="zq-tile"><input type="radio" name="capacity" value="5 to 10 more"><span>5 to 10 more</span></label><label class="zq-tile"><input type="radio" name="capacity" value="10 to 20 more"><span>10 to 20 more</span></label><label class="zq-tile"><input type="radio" name="capacity" value="20 or more"><span>20 or more</span></label></div><p class="zq-error" id="m-cap-err" role="alert"></p>
+        </fieldset>
+        <fieldset class="zq-step" data-step="4">
+          <legend class="zq-q" tabindex="-1">Where should we send your plan?</legend>
+          <div class="zq-fields">
+            <div class="zq-field"><label for="m-name">Your name</label><input id="m-name" name="full_name" type="text" autocomplete="name" required data-label="Your name" data-error="m-name-err" aria-describedby="m-name-err"><p class="zq-error" id="m-name-err"></p></div>
+            <div class="zq-field"><label for="m-biz">Business name <span class="zq-opt">(optional)</span></label><input id="m-biz" name="business_name" type="text" autocomplete="organization"></div>
+            <div class="zq-field"><label for="m-phone">Mobile phone</label><input id="m-phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" required data-label="Mobile phone" data-error="m-phone-err" aria-describedby="m-phone-hint m-phone-err"><p class="zq-hint" id="m-phone-hint">We text you within a minute.</p><p class="zq-error" id="m-phone-err"></p></div>
+            <div class="zq-field"><label for="m-email">Email</label><input id="m-email" name="email" type="email" autocomplete="email" required data-label="Email" data-error="m-email-err" aria-describedby="m-email-err"><p class="zq-error" id="m-email-err"></p></div>
+            <div class="zq-hp" aria-hidden="true"><label for="m-website">Leave this empty</label><input id="m-website" name="website" type="text" tabindex="-1" autocomplete="off"></div>
+            <label class="zq-consent"><input type="checkbox" name="sms_consent" value="yes"><span>By checking this box, I consent to receive non-marketing text messages from Zan Media Group about my inquiry, including follow-up questions and appointment scheduling. Message frequency varies, message &amp; data rates may apply. Text HELP for assistance, reply STOP to opt out. See our <a href="/privacy.html">Privacy Policy</a> and <a href="/terms.html">Terms</a>.</span></label>
+          </div>
+        </fieldset>
+        <div class="zq-nav">
+          <button type="button" class="zq-back" hidden>Back</button>
+          <button type="button" class="zq-next">Next</button>
+          <button type="submit" class="zq-submit" hidden>Send it</button>
+        </div>
+        <p class="zq-status" role="status" tabindex="-1"></p>
+        <noscript><p class="zq-status">This form needs JavaScript. Call or text <a href="tel:+19107149175">(910) 714-9175</a> instead.</p></noscript>
+      </form>
       </div>
     </div>
   </div>
@@ -430,25 +447,41 @@
             <li><span>Email</span><a href="mailto:zane@zanmediagroup.com">zane@zanmediagroup.com</a></li>
           </ul>
         </div>
-        <div class="ghl-form">
-          <iframe
-            src="https://api.leadconnectorhq.com/widget/form/NWkth8ShdtScF7DPefAU"
-            style="width:100%;height:770px;border:none;border-radius:8px"
-            id="inline-NWkth8ShdtScF7DPefAU"
-            data-layout="{'id':'INLINE'}"
-            data-trigger-type="alwaysShow"
-            data-trigger-value=""
-            data-activation-type="alwaysActivated"
-            data-activation-value=""
-            data-deactivation-type="neverDeactivate"
-            data-deactivation-value=""
-            data-form-name="ZMG Website Lead Form"
-            data-height="770"
-            data-layout-iframe-id="inline-NWkth8ShdtScF7DPefAU"
-            data-form-id="NWkth8ShdtScF7DPefAU"
-            data-cookie-consent="false"
-            title="ZMG Website Lead Form"></iframe>
-          <script src="https://link.msgsndr.com/js/form_embed.js"></script>
+        <div class="zq-wrap">
+      <form class="zq" id="q-quiz" data-zmg-quiz novalidate>
+        <p class="zq-progress" id="q-progress" aria-live="polite">Question 1 of 4</p>
+        <div class="zq-bar" aria-hidden="true"><span></span></div>
+        <fieldset class="zq-step" data-step="1">
+          <legend class="zq-q" tabindex="-1">What kind of work does your business do?</legend>
+          <div class="zq-tiles zq-tiles--3" data-required-group data-error="q-trade-err" aria-describedby="q-trade-err"><label class="zq-tile"><input type="radio" name="business_type" value="Roofing"><span>Roofing</span></label><label class="zq-tile"><input type="radio" name="business_type" value="HVAC"><span>HVAC</span></label><label class="zq-tile"><input type="radio" name="business_type" value="Plumbing"><span>Plumbing</span></label><label class="zq-tile"><input type="radio" name="business_type" value="Electrical"><span>Electrical</span></label><label class="zq-tile"><input type="radio" name="business_type" value="Landscaping"><span>Landscaping</span></label><label class="zq-tile"><input type="radio" name="business_type" value="Painting"><span>Painting</span></label><label class="zq-tile"><input type="radio" name="business_type" value="Remodeling or general contracting"><span>Remodeling or general contracting</span></label><label class="zq-tile"><input type="radio" name="business_type" value="Cleaning or pressure washing"><span>Cleaning or pressure washing</span></label><label class="zq-tile"><input type="radio" name="business_type" value="Something else"><span>Something else</span></label></div><p class="zq-error" id="q-trade-err" role="alert"></p>
+        </fieldset>
+        <fieldset class="zq-step" data-step="2">
+          <legend class="zq-q" tabindex="-1">Are you running ads for your business right now?</legend>
+          <div class="zq-tiles" data-required-group data-error="q-ads-err" aria-describedby="q-ads-err"><label class="zq-tile"><input type="radio" name="running_ads" value="Not yet"><span>Not yet</span></label><label class="zq-tile"><input type="radio" name="running_ads" value="Yes, on Facebook or Instagram"><span>Yes, on Facebook or Instagram</span></label><label class="zq-tile"><input type="radio" name="running_ads" value="Yes, on Google"><span>Yes, on Google</span></label><label class="zq-tile"><input type="radio" name="running_ads" value="Tried it and stopped"><span>Tried it and stopped</span></label></div><p class="zq-error" id="q-ads-err" role="alert"></p>
+        </fieldset>
+        <fieldset class="zq-step" data-step="3">
+          <legend class="zq-q" tabindex="-1">How many more jobs a month could your crew take on?</legend>
+          <div class="zq-tiles" data-required-group data-error="q-cap-err" aria-describedby="q-cap-err"><label class="zq-tile"><input type="radio" name="capacity" value="1 to 5 more"><span>1 to 5 more</span></label><label class="zq-tile"><input type="radio" name="capacity" value="5 to 10 more"><span>5 to 10 more</span></label><label class="zq-tile"><input type="radio" name="capacity" value="10 to 20 more"><span>10 to 20 more</span></label><label class="zq-tile"><input type="radio" name="capacity" value="20 or more"><span>20 or more</span></label></div><p class="zq-error" id="q-cap-err" role="alert"></p>
+        </fieldset>
+        <fieldset class="zq-step" data-step="4">
+          <legend class="zq-q" tabindex="-1">Where should we send your plan?</legend>
+          <div class="zq-fields">
+            <div class="zq-field"><label for="q-name">Your name</label><input id="q-name" name="full_name" type="text" autocomplete="name" required data-label="Your name" data-error="q-name-err" aria-describedby="q-name-err"><p class="zq-error" id="q-name-err"></p></div>
+            <div class="zq-field"><label for="q-biz">Business name <span class="zq-opt">(optional)</span></label><input id="q-biz" name="business_name" type="text" autocomplete="organization"></div>
+            <div class="zq-field"><label for="q-phone">Mobile phone</label><input id="q-phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" required data-label="Mobile phone" data-error="q-phone-err" aria-describedby="q-phone-hint q-phone-err"><p class="zq-hint" id="q-phone-hint">We text you within a minute.</p><p class="zq-error" id="q-phone-err"></p></div>
+            <div class="zq-field"><label for="q-email">Email</label><input id="q-email" name="email" type="email" autocomplete="email" required data-label="Email" data-error="q-email-err" aria-describedby="q-email-err"><p class="zq-error" id="q-email-err"></p></div>
+            <div class="zq-hp" aria-hidden="true"><label for="q-website">Leave this empty</label><input id="q-website" name="website" type="text" tabindex="-1" autocomplete="off"></div>
+            <label class="zq-consent"><input type="checkbox" name="sms_consent" value="yes"><span>By checking this box, I consent to receive non-marketing text messages from Zan Media Group about my inquiry, including follow-up questions and appointment scheduling. Message frequency varies, message &amp; data rates may apply. Text HELP for assistance, reply STOP to opt out. See our <a href="/privacy.html">Privacy Policy</a> and <a href="/terms.html">Terms</a>.</span></label>
+          </div>
+        </fieldset>
+        <div class="zq-nav">
+          <button type="button" class="zq-back" hidden>Back</button>
+          <button type="button" class="zq-next">Next</button>
+          <button type="submit" class="zq-submit" hidden>Send it</button>
+        </div>
+        <p class="zq-status" role="status" tabindex="-1"></p>
+        <noscript><p class="zq-status">This form needs JavaScript. Call or text <a href="tel:+19107149175">(910) 714-9175</a> instead.</p></noscript>
+      </form>
         </div>
       </div>
     </section>
@@ -547,5 +580,6 @@
     });
   })();
   </script>
+  <script src="/zmg-quiz.js?v=20261106" defer></script>
 </body>
 </html>
